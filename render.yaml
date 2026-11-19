@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: auditoria-transparencia-motor
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && playwright install chromium
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: MAX_PAGES
+        value: 55
+      - key: MAX_DEPTH
+        value: 2
